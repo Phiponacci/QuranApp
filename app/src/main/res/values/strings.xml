@@ -7,6 +7,7 @@
     <string name="thomn">الثمن:</string>
     <string name="hizb">الحزب:</string>
     <string name="mushaf_page_description">mushaf page</string>
+    <string name="makiyah_or_madania">Makiyah or madania</string>
     <string-array name="hizb">
         <item>1</item>
         <item>2</item>

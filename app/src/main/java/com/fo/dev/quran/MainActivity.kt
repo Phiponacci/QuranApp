@@ -1,19 +1,20 @@
 package com.fo.dev.quran
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.fo.dev.quran.databinding.ActivityMainBinding
 import com.fo.dev.quran.ui.GoToDialog
+import com.fo.dev.quran.ui.IndexDialog
 import com.fo.dev.quran.ui.adapters.ViewPagerAdapter
 
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     val binding get() = _binding!!
-    lateinit var dialog: GoToDialog
+    private lateinit var goToDialog: GoToDialog
+    private lateinit var indexDialog: IndexDialog
 
 
     companion object {
@@ -26,16 +27,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupPagerWithSeekBar()
         setupBottomNavigation()
-        setupGotoDialog()
+        setupDialogs()
     }
 
 
-    private fun setupGotoDialog() {
-        dialog = GoToDialog(this)
-        dialog.setOnGotoClicked { hizb, thomn ->
+    private fun setupDialogs() {
+        goToDialog = GoToDialog(this)
+        goToDialog.setOnGotoClicked { hizb, thomn ->
             val pageNumber = (hizb - 1) * 8 + thomn
             binding.viewpager.currentItem = pageNumber - 1
-            dialog.hide()
+            goToDialog.hide()
+        }
+        indexDialog = IndexDialog(this)
+        indexDialog.setOnItemSelected{ surah ->
+            val pageNumber = SurahRepository.surahList[surah].pageRange.first
+            binding.viewpager.currentItem = pageNumber - 1
+            indexDialog.hide()
         }
     }
 
@@ -82,11 +89,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun index() {
-
+        indexDialog.show()
     }
 
     private fun goto() {
-        dialog.show()
+        goToDialog.show()
     }
 
 

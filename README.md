@@ -16,10 +16,9 @@ The used mushaf in this application is the **Chadli** mushaf of algeria.
 This mushaf is divided into 60 **'hizb's** and every 'hizb' is divided into 8 **'thomn's** to help its users to memorize it. 
 
 ## Screenshots
-![Index](/screenshots/index_feature.png)
-![Goto](/screenshots/images/goto_feature.png)
-![About dialog](/screenshots/about_feature.png)
-
+<img src="/screenshots/index_feature.png" alt="Index" width=200/>
+<img src="/screenshots/goto_feature.png" alt="Index" width=200/>
+<img src="/screenshots/about_feature.png" alt="Index" width=200/>
 
 ## TODO
 

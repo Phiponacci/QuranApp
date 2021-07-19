@@ -5,6 +5,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.fo.dev.quran.databinding.ActivityMainBinding
+import com.fo.dev.quran.ui.AboutDialog
 import com.fo.dev.quran.ui.GoToDialog
 import com.fo.dev.quran.ui.IndexDialog
 import com.fo.dev.quran.ui.adapters.ViewPagerAdapter
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     val binding get() = _binding!!
     private lateinit var goToDialog: GoToDialog
     private lateinit var indexDialog: IndexDialog
+    private lateinit var aboutDialog: AboutDialog
 
 
     companion object {
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             binding.viewpager.currentItem = pageNumber - 1
             indexDialog.hide()
         }
+        aboutDialog = AboutDialog(this)
     }
 
     private fun setupBottomNavigation() {
@@ -104,9 +107,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun about() {
-
+    private fun about() {
+        aboutDialog.show()
     }
-
-
 }

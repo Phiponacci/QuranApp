@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
 
     companion object {
-        const val IMG_COUNT = 9
+        const val IMG_COUNT = 482
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +34,10 @@ class MainActivity : AppCompatActivity() {
     private fun setupDialogs() {
         goToDialog = GoToDialog(this)
         goToDialog.setOnGotoClicked { hizb, thomn ->
-            val pageNumber = (hizb - 1) * 8 + thomn
-            binding.viewpager.currentItem = pageNumber - 1
+            var pageNumber = (hizb - 1) * 8 + thomn
+            if(hizb == 60 && thomn == 8)
+                pageNumber++
+            binding.viewpager.currentItem = pageNumber
             goToDialog.hide()
         }
         indexDialog = IndexDialog(this)
@@ -60,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadImages(): MutableList<Int> {
         val list = mutableListOf<Int>()
-        for (i in 1..IMG_COUNT) {
+        for (i in 0..IMG_COUNT) {
             val id = resources.getIdentifier("warsh$i", "drawable", packageName)
             list.add(id)
         }
@@ -69,7 +71,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupPagerWithSeekBar() {
         val images = loadImages()
-
         val adapter = ViewPagerAdapter(images)
         binding.viewpager.adapter = adapter
         binding.viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
